@@ -1,4 +1,4 @@
-# empty-project
+# Demo Audio Visualizer
 
 Demo Audio Visualizer
 
