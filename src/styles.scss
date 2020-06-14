@@ -49,6 +49,23 @@ body {
     }
   }
 
+  .links {
+    position: absolute;
+    width: 100%;
+    bottom: 1rem;
+    left: 1rem;
+
+    a {
+      margin-right: 1rem;
+      font-size: 1.5rem;
+      color: $light;
+
+      &:active {
+        color: $light;
+      }
+    }
+  }
+
   .bar {
     position: absolute;
     background: $primary;
@@ -71,7 +88,7 @@ body {
       width: 50px;
       height: 50px;
       border-radius: 50%;
-      background-image: linear-gradient( 180deg,  transparent 10%, $primary 60%);
+      background-image: linear-gradient(180deg, transparent 10%, $primary 60%);
       transform: translate(-50%, -50%);
     }
   }
