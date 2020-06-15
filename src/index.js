@@ -65,6 +65,31 @@ audioPlayer.onRenderBar((bar, data, options) => {
     inner.style.height = "200px";
     inner.style.transform = `translate(-50%, -50%) scale(${scale})`;
   }
+
+  if (options.index == 3) {
+    titleEffect(data);
+  }
 });
+
+const title = document.querySelector(".music__title");
+
+const titleEffect = (data) => {
+  let y = data.map(0, 255, -2, 2);
+  let x = y.map(-2, 2, -5, 5);
+
+  let props = {
+    y: 0,
+    x: 0,
+  };
+
+  gsap.to(props, {
+    y: y,
+    x: x,
+    duration: 0.1,
+    onUpdate: () => {
+      title.style.textShadow = `${x}px -${y}px 2px #32e0c4, -${x}px ${y}px 2px #fc5185`;
+    },
+  });
+};
 
 audioPlayer.init();

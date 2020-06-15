@@ -1,4 +1,5 @@
 $primary: #32e0c4;
+$alt: #fc5185;
 $light: #eeeeee;
 $dark: #222831;
 $bg: $dark;
@@ -30,6 +31,19 @@ body {
   overflow: hidden;
   background-color: $bg;
   color: $light;
+
+  .music__title {
+    position: absolute;
+    left: 50%;
+    top: 4rem;
+    transform: translateX(-50%);
+    font-size: 4rem;
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 1rem;
+    color: $light;
+    // text-shadow: 5px -2px 2px $primary, -5px 2px 2px $alt;
+  }
 
   #visual {
     position: fixed;
