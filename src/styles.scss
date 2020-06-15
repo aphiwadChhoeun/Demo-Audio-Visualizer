@@ -6,7 +6,6 @@ $bg: $dark;
 body {
   margin: 0;
   padding: 0;
-  overflow: hidden;
 
   * {
     font-family: "Roboto", sans-serif;
@@ -23,8 +22,12 @@ body {
 }
 
 #app {
+  margin: 0;
+  padding: 0;
   width: 100vw;
   height: 100vh;
+  position: relative;
+  overflow: hidden;
   background-color: $bg;
   color: $light;
 
@@ -37,15 +40,59 @@ body {
 
   .controls {
     position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
 
     .button {
-      background: $primary;
+      background: transparent;
       border: none;
-      border-radius: 0.2rem;
-      padding: 0.5rem 1rem;
+      border-radius: 50%;
       cursor: pointer;
       font-size: 1rem;
       color: $dark;
+      width: 200px;
+      height: 200px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      &:focus {
+        border: none;
+        outline: none;
+      }
+
+      .shape__play {
+        width: 0;
+        height: 0;
+        display: block;
+        border-top: 50px solid transparent;
+        border-left: 50px solid $dark;
+        border-bottom: 50px solid transparent;
+        // display: none;
+      }
+
+      .shape__pause {
+        display: block;
+        display: none;
+
+        &:before {
+          content: "";
+          display: inline-block;
+          margin-right: 1rem;
+          width: 25px;
+          height: 100px;
+          background: $dark;
+        }
+
+        &:after {
+          content: "";
+          display: inline-block;
+          width: 25px;
+          height: 100px;
+          background: $dark;
+        }
+      }
     }
   }
 

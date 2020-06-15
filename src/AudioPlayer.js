@@ -1,10 +1,12 @@
+import { gsap } from "gsap";
+
 export default class AudioPlayer {
   constructor(container, audioPath, options = { numberOfBars: 20 }) {
     this.container = container;
     this.visualContainer = this.container.querySelector("#visual");
     this.audioPath = audioPath;
     this.btnPlay = this.container.querySelector("#btn__play");
-    this.btnPause = this.container.querySelector("#btn__pause");
+    this.playingState = 0;
 
     this.audio = document.createElement("audio");
     this.audio.src = this.audioPath;
@@ -126,13 +128,68 @@ export default class AudioPlayer {
 
   createEventListeners() {
     this.btnPlay.addEventListener("click", () => {
-      this.audio.play();
-      this.animate();
+      if (this.playingState == 0) {
+        this.audio.play();
+        this.animate();
+      } else {
+        this.audio.pause();
+        cancelAnimationFrame(this.ANIMATION_FRAME_ID);
+      }
+      this.playingState = !this.playingState;
+      this.upateButtonByState(this.playingState);
     });
-    this.btnPause.addEventListener("click", () => {
-      this.audio.pause();
-      cancelAnimationFrame(this.ANIMATION_FRAME_ID);
-    });
+  }
+
+  upateButtonByState(state) {
+    const shapePlay = this.btnPlay.querySelector(".shape__play");
+    const shapePause = this.btnPlay.querySelector(".shape__pause");
+    let duration = 0.15;
+
+    if (state == 1) {
+      gsap.to(shapePlay, {
+        rotateX: 90,
+        scale: 0.2,
+        duration: duration,
+        ease: "power3.out",
+        onComplete: () => {
+          shapePlay.style.display = "none";
+
+          gsap.to(shapePause, {
+            startAt: {
+              display: "block",
+              scale: 0.2,
+              rotateX: 90,
+            },
+            rotateX: 0,
+            scale: 1,
+            duration: duration,
+            ease: "power3.out",
+          });
+        },
+      });
+    } else {
+      gsap.to(shapePause, {
+        rotateX: 90,
+        scale: 0.2,
+        duration: duration,
+        ease: "power3.out",
+        onComplete: () => {
+          shapePause.style.display = "none";
+
+          gsap.to(shapePlay, {
+            startAt: {
+              display: "block",
+              scale: 0.2,
+              rotateX: 90,
+            },
+            rotateX: 0,
+            scale: 1,
+            duration: duration,
+            ease: "power3.out",
+          });
+        },
+      });
+    }
   }
 
   animate() {
