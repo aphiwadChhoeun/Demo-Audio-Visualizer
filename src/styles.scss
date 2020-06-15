@@ -5,6 +5,8 @@ $dark: #222831;
 $bg: $dark;
 
 body {
+  width: 100vw;
+  height: 100vh;
   margin: 0;
   padding: 0;
 
@@ -25,8 +27,8 @@ body {
 #app {
   margin: 0;
   padding: 0;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   position: relative;
   overflow: hidden;
   background-color: $bg;
@@ -70,6 +72,10 @@ body {
       display: flex;
       align-items: center;
       justify-content: center;
+
+      &#btn__play {
+        display: none;
+      }
 
       &:focus {
         border: none;

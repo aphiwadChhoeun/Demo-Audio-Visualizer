@@ -16,6 +16,10 @@ export default class AudioPlayer {
     this.initDomCallback = null;
     this.renderBarCallback = null;
 
+    this.audio.addEventListener("canplay", () => {
+      this.btnPlay.style.display = "flex";
+    });
+
     // adjust bar size if needed
     window.addEventListener("resize", this.onResize.bind(this));
   }
