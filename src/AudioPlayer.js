@@ -133,8 +133,10 @@ export default class AudioPlayer {
   createEventListeners() {
     this.btnPlay.addEventListener("click", () => {
       if (this.playingState == 0) {
-        this.audio.play();
-        this.animate();
+        this.audioCtx.resume().then(() => {
+          this.audio.play();
+          this.animate();
+        });
       } else {
         this.audio.pause();
         cancelAnimationFrame(this.ANIMATION_FRAME_ID);
