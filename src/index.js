@@ -8,7 +8,7 @@ Number.prototype.map = function (in_min, in_max, out_min, out_max) {
 
 let audioPlayer = new AudioPlayer(
   document.querySelector("#app"),
-  "./slump.mp3"
+  "./sample.mp3"
 );
 
 // full circle divide by number of bar - 1 (the first bar is used to be base in the middle)
